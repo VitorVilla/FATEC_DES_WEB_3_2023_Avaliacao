@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulário de Aluno</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f2f2f2;
+            flex-direction: column;
+        }
+
+        form {
+            width: 400px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 21px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        a {
+            text-decoration: none;
+            padding: 7px;
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+            border-radius: 7px;
+            margin-top: 20px;
+        }
+    
+        a:hover {
+            background-color: #45a049;
+        }
+    
+        .msg {
+            margin-top: 20px
+        }
+
+        .error {
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            margin-top: 5px;
+            padding: 7px;
+            background-color: #CB4335;
+            border-radius: 7px;
+        }
+    
+        .success {
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            margin-top: 5px;
+            padding: 7px;
+            background-color: #4CAF50;
+            border-radius: 7px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Formulário de Aluno</h2>
+    <form method="post" >
+
+        {% if messages %}
+            {% for message in messages %}
+                <div {% if message.tags %} class="{{ message.tags }} msg" {% endif %}>{{ message|striptags }}</div>
+            {% endfor %}
+        {% endif %}
+
+        {% csrf_token %}
+        <label for="nome">Nome Completo:</label>
+        <input type="text" id="nome" name="nome" required>
+
+        <label for="professor">Escolha o Professor:</label>
+        <select id="professor" name="professor" required>
+            <option value="">Selecione um professor</option>
+            <option value="Orlando">Orlando</option>
+            <option value="Esdras">Esdras</option>
+            <option value="Nilton">Nilton</option>
+        </select>
+
+        <input type="submit" value="Enviar">
+    </form>
+    <a href="/listar">Ver todos os alunos</a>
+</body>
+</html>
